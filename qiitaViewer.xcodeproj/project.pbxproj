@@ -1,0 +1,591 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AF93915C224A399200531756 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF93915B224A399200531756 /* AppDelegate.swift */; };
+		AF93915E224A399200531756 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF93915D224A399200531756 /* ViewController.swift */; };
+		AF939161224A399200531756 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF93915F224A399200531756 /* Main.storyboard */; };
+		AF939163224A399400531756 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF939162224A399400531756 /* Assets.xcassets */; };
+		AF939166224A399400531756 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF939164224A399400531756 /* LaunchScreen.storyboard */; };
+		AF939171224A399400531756 /* qiitaViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF939170224A399400531756 /* qiitaViewerTests.swift */; };
+		AF93917C224A399400531756 /* qiitaViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF93917B224A399400531756 /* qiitaViewerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AF93916D224A399400531756 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF939150224A399200531756 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF939157224A399200531756;
+			remoteInfo = qiitaViewer;
+		};
+		AF939178224A399400531756 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF939150224A399200531756 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF939157224A399200531756;
+			remoteInfo = qiitaViewer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AF939158224A399200531756 /* qiitaViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = qiitaViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF93915B224A399200531756 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AF93915D224A399200531756 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AF939160224A399200531756 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AF939162224A399400531756 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AF939165224A399400531756 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AF939167224A399400531756 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF93916C224A399400531756 /* qiitaViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = qiitaViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF939170224A399400531756 /* qiitaViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = qiitaViewerTests.swift; sourceTree = "<group>"; };
+		AF939172224A399400531756 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF939177224A399400531756 /* qiitaViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = qiitaViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF93917B224A399400531756 /* qiitaViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = qiitaViewerUITests.swift; sourceTree = "<group>"; };
+		AF93917D224A399400531756 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AF939155224A399200531756 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF939169224A399400531756 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF939174224A399400531756 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AF93914F224A399200531756 = {
+			isa = PBXGroup;
+			children = (
+				AF93915A224A399200531756 /* qiitaViewer */,
+				AF93916F224A399400531756 /* qiitaViewerTests */,
+				AF93917A224A399400531756 /* qiitaViewerUITests */,
+				AF939159224A399200531756 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AF939159224A399200531756 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AF939158224A399200531756 /* qiitaViewer.app */,
+				AF93916C224A399400531756 /* qiitaViewerTests.xctest */,
+				AF939177224A399400531756 /* qiitaViewerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AF93915A224A399200531756 /* qiitaViewer */ = {
+			isa = PBXGroup;
+			children = (
+				AF93915B224A399200531756 /* AppDelegate.swift */,
+				AF93915D224A399200531756 /* ViewController.swift */,
+				AF93915F224A399200531756 /* Main.storyboard */,
+				AF939162224A399400531756 /* Assets.xcassets */,
+				AF939164224A399400531756 /* LaunchScreen.storyboard */,
+				AF939167224A399400531756 /* Info.plist */,
+			);
+			path = qiitaViewer;
+			sourceTree = "<group>";
+		};
+		AF93916F224A399400531756 /* qiitaViewerTests */ = {
+			isa = PBXGroup;
+			children = (
+				AF939170224A399400531756 /* qiitaViewerTests.swift */,
+				AF939172224A399400531756 /* Info.plist */,
+			);
+			path = qiitaViewerTests;
+			sourceTree = "<group>";
+		};
+		AF93917A224A399400531756 /* qiitaViewerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AF93917B224A399400531756 /* qiitaViewerUITests.swift */,
+				AF93917D224A399400531756 /* Info.plist */,
+			);
+			path = qiitaViewerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AF939157224A399200531756 /* qiitaViewer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF939180224A399400531756 /* Build configuration list for PBXNativeTarget "qiitaViewer" */;
+			buildPhases = (
+				AF939154224A399200531756 /* Sources */,
+				AF939155224A399200531756 /* Frameworks */,
+				AF939156224A399200531756 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = qiitaViewer;
+			productName = qiitaViewer;
+			productReference = AF939158224A399200531756 /* qiitaViewer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AF93916B224A399400531756 /* qiitaViewerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF939183224A399400531756 /* Build configuration list for PBXNativeTarget "qiitaViewerTests" */;
+			buildPhases = (
+				AF939168224A399400531756 /* Sources */,
+				AF939169224A399400531756 /* Frameworks */,
+				AF93916A224A399400531756 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AF93916E224A399400531756 /* PBXTargetDependency */,
+			);
+			name = qiitaViewerTests;
+			productName = qiitaViewerTests;
+			productReference = AF93916C224A399400531756 /* qiitaViewerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AF939176224A399400531756 /* qiitaViewerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF939186224A399400531756 /* Build configuration list for PBXNativeTarget "qiitaViewerUITests" */;
+			buildPhases = (
+				AF939173224A399400531756 /* Sources */,
+				AF939174224A399400531756 /* Frameworks */,
+				AF939175224A399400531756 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AF939179224A399400531756 /* PBXTargetDependency */,
+			);
+			name = qiitaViewerUITests;
+			productName = qiitaViewerUITests;
+			productReference = AF939177224A399400531756 /* qiitaViewerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AF939150224A399200531756 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "古賀旺人";
+				TargetAttributes = {
+					AF939157224A399200531756 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					AF93916B224A399400531756 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = AF939157224A399200531756;
+					};
+					AF939176224A399400531756 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = AF939157224A399200531756;
+					};
+				};
+			};
+			buildConfigurationList = AF939153224A399200531756 /* Build configuration list for PBXProject "qiitaViewer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AF93914F224A399200531756;
+			productRefGroup = AF939159224A399200531756 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AF939157224A399200531756 /* qiitaViewer */,
+				AF93916B224A399400531756 /* qiitaViewerTests */,
+				AF939176224A399400531756 /* qiitaViewerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AF939156224A399200531756 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF939166224A399400531756 /* LaunchScreen.storyboard in Resources */,
+				AF939163224A399400531756 /* Assets.xcassets in Resources */,
+				AF939161224A399200531756 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF93916A224A399400531756 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF939175224A399400531756 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AF939154224A399200531756 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF93915E224A399200531756 /* ViewController.swift in Sources */,
+				AF93915C224A399200531756 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF939168224A399400531756 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF939171224A399400531756 /* qiitaViewerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF939173224A399400531756 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF93917C224A399400531756 /* qiitaViewerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AF93916E224A399400531756 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF939157224A399200531756 /* qiitaViewer */;
+			targetProxy = AF93916D224A399400531756 /* PBXContainerItemProxy */;
+		};
+		AF939179224A399400531756 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF939157224A399200531756 /* qiitaViewer */;
+			targetProxy = AF939178224A399400531756 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AF93915F224A399200531756 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF939160224A399200531756 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AF939164224A399400531756 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF939165224A399400531756 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AF93917E224A399400531756 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AF93917F224A399400531756 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AF939181224A399400531756 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SYLRR6M9EX;
+				INFOPLIST_FILE = qiitaViewer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eversense.qiitaViewer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AF939182224A399400531756 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SYLRR6M9EX;
+				INFOPLIST_FILE = qiitaViewer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eversense.qiitaViewer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AF939184224A399400531756 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SYLRR6M9EX;
+				INFOPLIST_FILE = qiitaViewerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eversense.qiitaViewerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/qiitaViewer.app/qiitaViewer";
+			};
+			name = Debug;
+		};
+		AF939185224A399400531756 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SYLRR6M9EX;
+				INFOPLIST_FILE = qiitaViewerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eversense.qiitaViewerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/qiitaViewer.app/qiitaViewer";
+			};
+			name = Release;
+		};
+		AF939187224A399400531756 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SYLRR6M9EX;
+				INFOPLIST_FILE = qiitaViewerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eversense.qiitaViewerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = qiitaViewer;
+			};
+			name = Debug;
+		};
+		AF939188224A399400531756 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SYLRR6M9EX;
+				INFOPLIST_FILE = qiitaViewerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eversense.qiitaViewerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = qiitaViewer;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AF939153224A399200531756 /* Build configuration list for PBXProject "qiitaViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF93917E224A399400531756 /* Debug */,
+				AF93917F224A399400531756 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF939180224A399400531756 /* Build configuration list for PBXNativeTarget "qiitaViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF939181224A399400531756 /* Debug */,
+				AF939182224A399400531756 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF939183224A399400531756 /* Build configuration list for PBXNativeTarget "qiitaViewerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF939184224A399400531756 /* Debug */,
+				AF939185224A399400531756 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF939186224A399400531756 /* Build configuration list for PBXNativeTarget "qiitaViewerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF939187224A399400531756 /* Debug */,
+				AF939188224A399400531756 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AF939150224A399200531756 /* Project object */;
+}
