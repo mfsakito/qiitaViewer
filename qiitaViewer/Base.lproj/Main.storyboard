@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HKe-9R-pnq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HKe-9R-pnq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,27 +39,37 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="mTx-yZ-KqI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AKb-bt-Fhb"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mTx-yZ-KqI" secondAttribute="bottom" id="Gza-gH-08n"/>
-                            <constraint firstItem="mTx-yZ-KqI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="i4f-9V-Gfl"/>
-                            <constraint firstItem="mTx-yZ-KqI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="kyZ-zl-WcO"/>
-                            <constraint firstAttribute="bottom" secondItem="mTx-yZ-KqI" secondAttribute="bottom" id="ozM-sU-KEd"/>
-                            <constraint firstItem="mTx-yZ-KqI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="rhq-cI-b8u"/>
-                            <constraint firstAttribute="trailing" secondItem="mTx-yZ-KqI" secondAttribute="trailing" id="s9A-p9-py5"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mTx-yZ-KqI" secondAttribute="trailing" id="xKL-hU-jiQ"/>
-                            <constraint firstItem="mTx-yZ-KqI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xwh-ID-dgN"/>
-                            <constraint firstItem="mTx-yZ-KqI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yj0-pc-Nq4"/>
+                            <constraint firstAttribute="trailing" secondItem="mTx-yZ-KqI" secondAttribute="trailing" id="B4m-0j-fjL"/>
+                            <constraint firstItem="mTx-yZ-KqI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="IRo-KS-Ce1"/>
+                            <constraint firstAttribute="bottom" secondItem="mTx-yZ-KqI" secondAttribute="bottom" id="OWP-8o-w5E"/>
+                            <constraint firstItem="mTx-yZ-KqI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bhn-EN-qiP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="新着記事一覧" id="t2t-4n-9Uq"/>
                     <connections>
                         <outlet property="articleTableView" destination="mTx-yZ-KqI" id="QIE-w9-XiC"/>
+                        <segue destination="3xa-xp-x5A" kind="show" identifier="toNewViewController" id="E6t-Ce-jIb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="863.20000000000005" y="132.68365817091455"/>
+        </scene>
+        <!--New View Controller-->
+        <scene sceneID="y1O-uC-sgn">
+            <objects>
+                <viewController id="3xa-xp-x5A" customClass="NewViewController" customModule="qiitaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SET-Fe-CNo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="XJF-Kp-RPU"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EWi-A8-Tps" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1687" y="145"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WnT-c3-SAU">
