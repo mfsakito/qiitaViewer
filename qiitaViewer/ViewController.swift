@@ -67,9 +67,20 @@ func getArticles(){
     func tableView(_ tableView:UITableView,cellForRowAt indexPath:IndexPath) -> UITableViewCell{
         let cell = UITableViewCell(style:.subtitle,reuseIdentifier:"cell")
         let article = articles[indexPath.row]
-
+        cell.imageView?.image = UIImage(named: "logo.png")
         cell.textLabel?.text = article["title"]!
         cell.detailTextLabel?.text = article["userId"]!
+
+
+//ココから。サムネの初期値はいれられたので、非同期で画像をためていきたい。
+//        https://qiita.com/ytakzk/items/5b9655ab5c0825dbbd62
+//        https://1000ch.net/posts/2016/dispatch-queue.html
+//        DispatchQueue.global().async{
+//            let url:NSURL = NSURL(article["profile_img"])
+//        }
+//
+        
+        
 
         return cell
     }
@@ -85,8 +96,22 @@ func getArticles(){
         super.didReceiveMemoryWarning()
     }
 
-
     
+//    model化。30行目付近のjsonの管理に関わる。
+//    別ファイルに分けたほうがいいかも。
+
+//    class Article:NSObject{
+//        var title:String,url:String,userId:String,profileImg:String
+//
+//        init(title:String,url:String,userId:String,profileImg:String)
+//        {
+//        self.title = title
+//        self.url = url
+//        self.userId = userId
+//        self.profileImg = profileImg
+//        }
+//
+//    }
     
 }
 
