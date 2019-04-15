@@ -21,6 +21,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var articleDataArray = [Article]()
     var imageCache = NSCache<AnyObject, AnyObject>()
     
+    
 func getArticles(){
     let _ = Alamofire.request("https://qiita.com/api/v2/items").responseJSON{
         response in
@@ -30,7 +31,7 @@ func getArticles(){
         
         let json = JSON(object)
         json.forEach {(_,json) in
-            let article = Article(title:String,url:String,userId:String,profileImg:String)
+            let article = Article()
             if let title = json["title"].string{
                 article.title = title}
             if let url = json["url"].string {
@@ -39,10 +40,10 @@ func getArticles(){
                 article.userId = userId}
             if let profileImg = json["user"]["profile_image_url"].string {
                 article.profileImg = profileImg}
-            
             self.articleDataArray.append(article)
-            print(self.articleDataArray)
+            
         }
+        print(self.articleDataArray)
     self.articleTableView.reloadData()
     }
     
@@ -72,20 +73,43 @@ func getArticles(){
     func tableView(_ tableView:UITableView,cellForRowAt indexPath:IndexPath) -> UITableViewCell{
         let cell = UITableViewCell(style:.subtitle,reuseIdentifier:"cell")
         let article = articleDataArray[indexPath.row]
-        cell.imageView?.image = UIImage(named: "logo.png")
         cell.textLabel?.text = article.title
         cell.detailTextLabel?.text = article.userId
-
-
-//ココから。サムネの初期値はいれられたので、非同期で画像をためていきたい。
-//        https://qiita.com/ytakzk/items/5b9655ab5c0825dbbd62
-//        https://1000ch.net/posts/2016/dispatch-queue.html
-//        DispatchQueue.global().async{
-//            let url:NSURL = NSURL(article["profile_img"])
-//        }
-//
+        cell.imageView?.image = UIImage(named: "logo.png")
         
+        //サムネの初期値はいれられたので、非同期で画像をためていきたい。
         
+        if let cacheImage = imageCache.object(forKey: article.profileImg as AnyObject) as? UIImage{
+                cell.imageView?.image = cacheImage
+            }else{
+            
+            let session = URLSession.shared
+            
+            if let url = URL(string: article.profileImg){
+                let request = URLRequest(url: url as URL)
+                print("requests_start")
+                let task = session.dataTask(with: request,completionHandler: {
+                    (data:Data?,URLResponse:URLResponse?,error:Error?) -> Void in
+                    
+                    if let data = data {
+                        
+                        if let image = UIImage(data:data){
+                            
+                            self.imageCache.setObject(image, forKey: article.profileImg as AnyObject)
+                            
+                                DispatchQueue.main.async {
+                                    
+                                    cell.imageView?.image = image
+                                    
+                                }
+                            
+                        }
+                    }
+                })
+                task.resume()
+            }
+            
+            }
 
         return cell
     }
