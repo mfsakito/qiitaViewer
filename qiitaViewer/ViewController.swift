@@ -6,11 +6,6 @@
 //  Copyright © 2019 古賀旺人. All rights reserved.
 //
 
-//https://teratail.com/questions/154746
-//↑サムネ表示はこれでできるか。。。？(Swiftで通信後TableViewCellに画像表示できない)
-
-
-
 import UIKit
 import Alamofire
 import SwiftyJSON
@@ -20,7 +15,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 
     var articleDataArray = [Article]()
     var imageCache = NSCache<AnyObject, AnyObject>()
-    
+    private weak var refreshControl:UIRefreshControl!
+    @IBOutlet weak var articleTableView: UITableView!
     
 func getArticles(){
     let _ = Alamofire.request("https://qiita.com/api/v2/items").responseJSON{
@@ -62,7 +58,7 @@ func getArticles(){
         NVC.url = selectUrl
     }
     
-    @IBOutlet weak var articleTableView: UITableView!
+    
     
     //TableViewに表示させるもの
     func tableView(_ tableView:UITableView,numberOfRowsInSection section :Int) -> Int{
@@ -77,7 +73,7 @@ func getArticles(){
         cell.detailTextLabel?.text = article.userId
         cell.imageView?.image = UIImage(named: "logo.png")
         
-        //サムネの初期値はいれられたので、非同期で画像をためていきたい。
+        //サムネの初期値はいれられたので、非同期で画像をためていく
         
         if let cacheImage = imageCache.object(forKey: article.profileImg as AnyObject) as? UIImage{
                 cell.imageView?.image = cacheImage
@@ -87,7 +83,7 @@ func getArticles(){
             
             if let url = URL(string: article.profileImg){
                 let request = URLRequest(url: url as URL)
-                print("requests_start")
+
                 let task = session.dataTask(with: request,completionHandler: {
                     (data:Data?,URLResponse:URLResponse?,error:Error?) -> Void in
                     
@@ -100,15 +96,12 @@ func getArticles(){
                                 DispatchQueue.main.async {
                                     
                                     cell.imageView?.image = image
-                                    
                                 }
-                            
                         }
                     }
                 })
                 task.resume()
             }
-            
             }
 
         return cell
@@ -120,12 +113,89 @@ func getArticles(){
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         getArticles()
+        initializePullToRefresh()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refresh()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+//    pull to refresh
+    private func initializePullToRefresh(){
+        let control = UIRefreshControl()
+        control.addTarget(self,action:#selector(onPullToRefresh(_:)),for:.valueChanged)
+        self.articleTableView.addSubview(control)
+        refreshControl = control
+        
+    }
+    @objc private func onPullToRefresh(_ sender:AnyObject){
+        refresh()
+    }
+    
+    private func stopPullToRefresh(){
+        if refreshControl.isRefreshing{
+            refreshControl.endRefreshing()
+        }
+    }
+    
+//    ここから。pulltorefreshを実行すると、古いcellが削除されず、どんどん積み重なってしまう。実機確認
     
     
+    private func refresh(){
+        func tableView(_ tableView:UITableView,cellForRowAt indexPath:IndexPath) -> UITableViewCell{
+            let cell = UITableViewCell(style:.subtitle,reuseIdentifier:"cell")
+            let article = articleDataArray[indexPath.row]
+            cell.textLabel?.text = article.title
+            cell.detailTextLabel?.text = article.userId
+            cell.imageView?.image = UIImage(named: "logo.png")
+            
+            //サムネの初期値はいれられたので、非同期で画像をためていく
+            
+            if let cacheImage = imageCache.object(forKey: article.profileImg as AnyObject) as? UIImage{
+                cell.imageView?.image = cacheImage
+            }else{
+                
+                let session = URLSession.shared
+                
+                if let url = URL(string: article.profileImg){
+                    let request = URLRequest(url: url as URL)
+                    
+                    let task = session.dataTask(with: request,completionHandler: {
+                        (data:Data?,URLResponse:URLResponse?,error:Error?) -> Void in
+                        
+                        if let data = data {
+                            
+                            if let image = UIImage(data:data){
+                                
+                                self.imageCache.setObject(image, forKey: article.profileImg as AnyObject)
+                                
+                                DispatchQueue.main.async {
+                                    
+                                    cell.imageView?.image = image
+                                }
+                            }
+                        }
+                    })
+                    task.resume()
+                }
+            }
+            
+            return cell
+        }
+        
+
+        self.completeRefresh()
+    
+    }
+    
+    private func completeRefresh(){
+        stopPullToRefresh()
+        getArticles()
+    }
 }
 
