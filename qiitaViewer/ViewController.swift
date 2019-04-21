@@ -11,12 +11,14 @@ import Alamofire
 import SwiftyJSON
 import RealmSwift
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate {
 
     var articleDataArray = [Article]()
     var imageCache = NSCache<AnyObject, AnyObject>()
     private weak var refreshControl:UIRefreshControl!
     @IBOutlet weak var articleTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
 func getArticles(){
     let _ = Alamofire.request("https://qiita.com/api/v2/items").responseJSON{
@@ -114,6 +116,10 @@ func getArticles(){
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        画面を読み込んでから引き継ぐ
+        searchBar.delegate = self
+
         // Do any additional setup after loading the view, typically from a nib.
         initializePullToRefresh()
     }
@@ -126,6 +132,23 @@ func getArticles(){
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+//    商品検索
+    func searchBarSearchButtonClicked(_ searchBar:UISearchBar){
+//        入力テキストの取得
+        let inputText = searchBar.text
+//        入力が0文字以上のチェック
+        guard let searchQuery = inputText else {
+            return
+        }
+        if searchQuery.lengthOfBytes(using: String.Encoding.utf8) > 0{
+            print(searchQuery)
+//            articleDataArray.removeAll()
+            
+        }
+        searchBar.resignFirstResponder()
+    }
+    
 
 //    pull to refresh
     
