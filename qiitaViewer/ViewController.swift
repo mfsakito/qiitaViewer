@@ -40,7 +40,7 @@ func getArticles(){
             self.articleDataArray.append(article)
             
         }
-        print(self.articleDataArray)
+//        print(self.articleDataArray)
     self.articleTableView.reloadData()
     }
     
