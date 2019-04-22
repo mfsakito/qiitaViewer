@@ -19,9 +19,10 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet weak var articleTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    let entryUrl = "https://qiita.com/api/v2/items"
     
-func getArticles(){
-    let _ = Alamofire.request("https://qiita.com/api/v2/items").responseJSON{
+    func getArticles(queryUrl:String){
+    let _ = Alamofire.request(queryUrl).responseJSON{
         response in
         guard let object = response.result.value else {
             return
@@ -143,10 +144,28 @@ func getArticles(){
         }
         if searchQuery.lengthOfBytes(using: String.Encoding.utf8) > 0{
             print(searchQuery)
-//            articleDataArray.removeAll()
+//            表示している記事を一旦消す
+            articleDataArray.removeAll()
+//            パラメータを指定する
+            let requestUrl = createRequestUrl(parameter: searchQuery)
+            getArticles(queryUrl:requestUrl)
             
         }
         searchBar.resignFirstResponder()
+    }
+    
+//    検索用のURLをつくる関数
+    func createRequestUrl(parameter:String?) -> String{
+        var query = ""
+        if let value = parameter{
+            if let escapedValue = value.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed){
+                query = escapedValue
+            }
+        }
+        
+        let requestUrl = entryUrl + "?query=title%3A" + query
+        print(requestUrl)
+        return requestUrl
     }
     
 
@@ -172,7 +191,7 @@ func getArticles(){
     
     
     private func refresh(){
-        getArticles()
+        getArticles(queryUrl: entryUrl)
         self.completeRefresh()
     }
     
