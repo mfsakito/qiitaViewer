@@ -22,7 +22,7 @@ import RealmSwift
             super.viewDidLoad()
             
 //            お気に入りボタンの設置
-            if searchFavoritedArticle(key:url) == true{
+            if isFavoritedArticle(key:url) == true{
                 changeFavotiteButton(key: true)
             }else{
                 changeFavotiteButton(key: false)
@@ -61,49 +61,26 @@ import RealmSwift
         }
         
         
-//        記事お気に入り
-        
+//        記事お気に入りボタンを押したときの動作
         @objc func articleFavoriteButtonTapped(_ sender:UIBarButtonItem){
-            //            print(url!)
-            
-            addArticleFavorite()
-            displayFavoritedArticles()
+            articleFavorite()
         }
         
-//        ボタンを押すとデータをためる
+//      データ貯めるところ
         var favoriteArticleUrlList = FavoriteArticleItem()
         let realm = try! Realm()
-        
-        func searchFavoritedArticle(key:String) -> Bool {
-            if let _ = realm.object(ofType: FavoriteArticleItem.self, forPrimaryKey: key){
-                print("article has already favorited")
-                return true
-            }else{
-                print("article favorited")
-                return false
-            }
-        }
-        
-        func changeFavotiteButton(key:Bool){
-            if key == true{
-            rightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "starred.png")!.withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: self, action: #selector(articleFavoriteButtonTapped(_:)))
-            }else{
-                rightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "star.png")!.withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: self, action: #selector(articleFavoriteButtonTapped(_:)))
-            }
-            self.navigationItem.setRightBarButton(rightFavoriteBarButtonItem, animated: true)
-        }
-        
-        func addArticleFavorite(){
-            if searchFavoritedArticle(key:url) == true{
+
+        //        ボタンを押したときにお気に入り登録されていた記事なら削除、されてなければ登録する
+        func articleFavorite(){
+            if isFavoritedArticle(key:url) == true{
                 if let article = realm.object(ofType: FavoriteArticleItem.self, forPrimaryKey: url){
                     
-                try! realm.write {
-                    realm.delete(article)
+                    try! realm.write {
+                        realm.delete(article)
                     }
-                    
+                    changeFavotiteButton(key:false)
                 }
-                changeFavotiteButton(key:false)
-            }else {
+            }else{
                 favoriteArticleUrlList.articleUrl = url
                 
                 try! realm.write {
@@ -111,6 +88,25 @@ import RealmSwift
                 }
                 changeFavotiteButton(key:true)
             }
+        }
+
+//        すでにお気に入りしているかを検索する
+        func isFavoritedArticle(key:String) -> Bool {
+            if let _ = realm.object(ofType: FavoriteArticleItem.self, forPrimaryKey: key){
+                return true
+            }else{
+                return false
+            }
+        }
+        
+//       お気に入りがあるかないかでボタンの画像を差し替える
+        func changeFavotiteButton(key:Bool){
+            if key == true{
+            rightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "starred.png")!.withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: self, action: #selector(articleFavoriteButtonTapped(_:)))
+            }else{
+                rightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "star.png")!.withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: self, action: #selector(articleFavoriteButtonTapped(_:)))
+            }
+            self.navigationItem.setRightBarButton(rightFavoriteBarButtonItem, animated: true)
         }
         
 //        テスト用、データの表示

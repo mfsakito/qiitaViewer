@@ -41,19 +41,31 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="lvC-PO-EOP"/>
                                 </connections>
                             </tableView>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6V-Kq-1Tg">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem tag="1" systemItem="recents" id="ZVR-Gt-paJ"/>
+                                    <tabBarItem tag="2" systemItem="favorites" id="msw-nI-kgC"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="mTx-yZ-KqI" secondAttribute="trailing" id="B4m-0j-fjL"/>
                             <constraint firstItem="mTx-yZ-KqI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="IRo-KS-Ce1"/>
                             <constraint firstAttribute="bottom" secondItem="mTx-yZ-KqI" secondAttribute="bottom" id="OWP-8o-w5E"/>
+                            <constraint firstItem="y6V-Kq-1Tg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="XlW-zt-Ohn"/>
+                            <constraint firstItem="y6V-Kq-1Tg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bAc-eB-rqU"/>
                             <constraint firstItem="mTx-yZ-KqI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bhn-EN-qiP"/>
+                            <constraint firstItem="y6V-Kq-1Tg" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="k3g-s4-WQW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="新着記事一覧" id="t2t-4n-9Uq"/>
                     <connections>
                         <outlet property="articleTableView" destination="mTx-yZ-KqI" id="QIE-w9-XiC"/>
+                        <outlet property="myTabBar" destination="y6V-Kq-1Tg" id="oHu-J7-p36"/>
                         <outlet property="searchBar" destination="oTR-m4-Lyn" id="t0x-6l-e3Y"/>
                         <segue destination="3xa-xp-x5A" kind="show" identifier="toNewViewController" id="jkQ-61-968"/>
                     </connections>

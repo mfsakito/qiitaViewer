@@ -11,13 +11,15 @@ import Alamofire
 import SwiftyJSON
 import RealmSwift
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate {
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UITabBarDelegate {
 
     var articleDataArray = [Article]()
     var imageCache = NSCache<AnyObject, AnyObject>()
     private weak var refreshControl:UIRefreshControl!
     @IBOutlet weak var articleTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var myTabBar: UITabBar!
+    
     
     let entryUrl = "https://qiita.com/api/v2/items"
     
@@ -120,7 +122,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
 //        画面を読み込んでから引き継ぐ
         searchBar.delegate = self
-        
+        myTabBar.delegate = self
 
         // Do any additional setup after loading the view, typically from a nib.
         initializePullToRefresh()
@@ -130,6 +132,20 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         super.viewWillAppear(animated)
         refresh()
     }
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        switch item.tag {
+        case 1:
+            print("1をタップ")
+        case 2:
+            print("2をタップ")
+        default:
+            print("どれでもない")
+        }
+    }
+    
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
