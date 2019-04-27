@@ -27,7 +27,7 @@
                                     <textInputTraits key="textInputTraits" keyboardType="webSearch" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="K3D-rj-nS1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="K3D-rj-nS1">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K3D-rj-nS1" id="gsR-7E-CQB">
@@ -55,7 +55,7 @@
                     <connections>
                         <outlet property="articleTableView" destination="mTx-yZ-KqI" id="QIE-w9-XiC"/>
                         <outlet property="searchBar" destination="oTR-m4-Lyn" id="t0x-6l-e3Y"/>
-                        <segue destination="3xa-xp-x5A" kind="show" identifier="toNewViewController" id="E6t-Ce-jIb"/>
+                        <segue destination="3xa-xp-x5A" kind="show" identifier="toNewViewController" id="jkQ-61-968"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

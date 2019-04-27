@@ -120,6 +120,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
 //        画面を読み込んでから引き継ぐ
         searchBar.delegate = self
+        
 
         // Do any additional setup after loading the view, typically from a nib.
         initializePullToRefresh()

@@ -8,13 +8,18 @@
 
 import UIKit
 import WebKit
+import RealmSwift
 
     class NewViewController: UIViewController,WKUIDelegate{
         override func viewDidLoad() {
             super.viewDidLoad()
             
+//            お気に入りボタンの設置
+            var rightFavoriteBarButtonItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "star.png")!.withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: self, action: #selector(articleFavoriteButtonTapped(_:)))
             // Do any additional setup after loading the view.
+            self.navigationItem.setRightBarButton(rightFavoriteBarButtonItem, animated: true)
         }
+        
         
         var webView:WKWebView!
         var topPadding:CGFloat = 0
@@ -50,6 +55,41 @@ import WebKit
         self.view.addSubview(webView)
         
         }
+        
+        
+//        記事お気に入り
+        
+        @objc func articleFavoriteButtonTapped(_ sender:UIBarButtonItem){
+            //            print(url!)
+            addArticleFavorite()
+            displayFavoritedArticles()
+        }
+        
+//        ボタンを押すとデータをためる
+        var favoriteArticleUrlList = FavoriteArticleItem()
+        let realm = try! Realm()
+        
+        func addArticleFavorite(){
+            favoriteArticleUrlList.articleUrl = url
+            try! realm.write {
+                realm.add(favoriteArticleUrlList)
+            }
+            
+        }
+        
+//        テスト用、データの表示
+        func displayFavoritedArticles(){
+            let fav = realm.objects(FavoriteArticleItem.self)
+            for i in fav{
+                print("url:\(i.articleUrl)")
+                }
+        }
+//       データがあればお気に入りボタンを変更する
+        
+//        お気に入り状態で再タップするとデータを削除する
+        
+//        (できれば)お気に入りした記事リスト
+        
         
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
