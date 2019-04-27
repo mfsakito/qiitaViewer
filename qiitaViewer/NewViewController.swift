@@ -11,19 +11,21 @@ import WebKit
 import RealmSwift
 
     class NewViewController: UIViewController,WKUIDelegate{
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            
-//            お気に入りボタンの設置
-            var rightFavoriteBarButtonItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "star.png")!.withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: self, action: #selector(articleFavoriteButtonTapped(_:)))
-            // Do any additional setup after loading the view.
-            self.navigationItem.setRightBarButton(rightFavoriteBarButtonItem, animated: true)
-        }
-        
         
         var webView:WKWebView!
         var topPadding:CGFloat = 0
         var url:String!
+        var rightFavoriteBarButtonItem:UIBarButtonItem!
+        
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+//            お気に入りボタンの設置
+            rightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "star.png")!.withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: self, action: #selector(articleFavoriteButtonTapped(_:)))
+            // Do any additional setup after loading the view.
+            self.navigationItem.setRightBarButton(rightFavoriteBarButtonItem, animated: true)
+        }
         
         override func loadView() {
             let webConfiguration = WKWebViewConfiguration()
@@ -61,7 +63,9 @@ import RealmSwift
         
         @objc func articleFavoriteButtonTapped(_ sender:UIBarButtonItem){
             //            print(url!)
+            
             addArticleFavorite()
+            
             displayFavoritedArticles()
         }
         
@@ -69,12 +73,25 @@ import RealmSwift
         var favoriteArticleUrlList = FavoriteArticleItem()
         let realm = try! Realm()
         
-        func addArticleFavorite(){
-            favoriteArticleUrlList.articleUrl = url
-            try! realm.write {
-                realm.add(favoriteArticleUrlList)
+        func searchFavoritedArticle(key:String) -> Bool {
+            if let _ = realm.object(ofType: FavoriteArticleItem.self, forPrimaryKey: key){
+                return true
+            }else{
+                return false
             }
-            
+        }
+        
+        func addArticleFavorite(){
+            if searchFavoritedArticle(key:url) == true{
+                rightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "starred.png")!.withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: self, action: #selector(articleFavoriteButtonTapped(_:)))
+            }else {
+                favoriteArticleUrlList.articleUrl = url
+                //            let fav = realm.objects(FavoriteArticleItem.self)
+                
+                try! realm.write {
+                    realm.add(favoriteArticleUrlList)
+                }
+            }
         }
         
 //        テスト用、データの表示
