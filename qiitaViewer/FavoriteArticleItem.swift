@@ -11,14 +11,11 @@ import RealmSwift
 
 class FavoriteArticleItem:Object {
     @objc dynamic var articleUrl:String = ""
-    @objc dynamic var articleTitle:String = ""
-    
+    @objc dynamic var articleTitle:String = ""          
     
     override static func primaryKey() -> String?{
         return "articleUrl"
     }
-//    init(articleUrl:String = "",articleTitle:String = ""){
-//        self.articleUrl = articleUrl
-//        self.articleTitle = articleTitle
-//    }
+    
 }
+

@@ -11,54 +11,52 @@ import Alamofire
 import SwiftyJSON
 import RealmSwift
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UITabBarDelegate {
-
+class MainViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate {
+    
     var articleDataArray = [Article]()
     var imageCache = NSCache<AnyObject, AnyObject>()
     private weak var refreshControl:UIRefreshControl!
     @IBOutlet weak var articleTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var myTabBar: UITabBar!
-    
+    //    let mainTabBarController = MainTabBarController()
     
     let entryUrl = "https://qiita.com/api/v2/items"
     
     func getArticles(queryUrl:String){
-    let _ = Alamofire.request(queryUrl).responseJSON{
-        response in
-        guard let object = response.result.value else {
-            return
+        print("api start")
+        let _ = Alamofire.request(queryUrl).responseJSON{
+            response in
+            guard let object = response.result.value else {
+                return
+            }
+            let json = JSON(object)
+            self.articleDataArray = [Article]()
+            json.forEach {(_,json) in
+                let article = Article()
+                if let title = json["title"].string{
+                    article.title = title}
+                if let url = json["url"].string {
+                    article.url = url }
+                if let userId = json["user"]["id"].string {
+                    article.userId = userId}
+                if let profileImg = json["user"]["profile_image_url"].string {
+                    article.profileImg = profileImg}
+                self.articleDataArray.append(article)
+                
+            }
+            self.articleTableView.reloadData()            
         }
         
-        let json = JSON(object)
-        self.articleDataArray = [Article]()
-        json.forEach {(_,json) in
-            let article = Article()
-            if let title = json["title"].string{
-                article.title = title}
-            if let url = json["url"].string {
-                article.url = url }
-            if let userId = json["user"]["id"].string {
-                article.userId = userId}
-            if let profileImg = json["user"]["profile_image_url"].string {
-                article.profileImg = profileImg}
-            self.articleDataArray.append(article)
-            
-        }
-//        print(self.articleDataArray)
-    self.articleTableView.reloadData()
     }
     
-}
-
     var selectUrl: String!
-//    cellがタップされたとき
+    //    cellがタップされたとき
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let newArticle = articleDataArray[indexPath.row]
         selectUrl = newArticle.url
         performSegue(withIdentifier: "toNewViewController", sender: nil)
     }
-//    画面遷移のとき
+    //    画面遷移のとき
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let NVC:NewViewController = (segue.destination as? NewViewController)!
         NVC.url = selectUrl
@@ -68,7 +66,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     //TableViewに表示させるもの
     func tableView(_ tableView:UITableView,numberOfRowsInSection section :Int) -> Int{
-       print(articleDataArray.count)
+               print(articleDataArray.count)
         return articleDataArray.count
         
     }
@@ -84,14 +82,14 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         //サムネの初期値はいれられたので、非同期で画像をためていく
         
         if let cacheImage = imageCache.object(forKey: article.profileImg as AnyObject) as? UIImage{
-                cell.imageView?.image = cacheImage
-            }else{
+            cell.imageView?.image = cacheImage
+        }else{
             
             let session = URLSession.shared
             
             if let url = URL(string: article.profileImg){
                 let request = URLRequest(url: url as URL)
-
+                
                 let task = session.dataTask(with: request,completionHandler: {
                     (data:Data?,URLResponse:URLResponse?,error:Error?) -> Void in
                     
@@ -101,17 +99,17 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                             
                             self.imageCache.setObject(image, forKey: article.profileImg as AnyObject)
                             
-                                DispatchQueue.main.async {
-                                    
-                                    cell.imageView?.image = image
-                                }
+                            DispatchQueue.main.async {
+                                
+                                cell.imageView?.image = image
+                            }
                         }
                     }
                 })
                 task.resume()
             }
-            }
-
+        }
+        
         return cell
     }
     
@@ -120,50 +118,40 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        画面を読み込んでから引き継ぐ
+        //        検索の操作を引き継ぐ
+        //        MainTabBarController.tabBar.delegate = self
         searchBar.delegate = self
-        myTabBar.delegate = self
-
+        
+        //        新着記事の取得
+        getArticles(queryUrl:entryUrl)
+        
         // Do any additional setup after loading the view, typically from a nib.
         initializePullToRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refresh()
+        //        refresh()
     }
-    
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        switch item.tag {
-        case 1:
-            print("1をタップ")
-        case 2:
-            print("2をタップ")
-        default:
-            print("どれでもない")
-        }
-    }
-    
-    
     
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-//    商品検索
+    //    商品検索
     func searchBarSearchButtonClicked(_ searchBar:UISearchBar){
-//        入力テキストの取得
+        //        入力テキストの取得
         let inputText = searchBar.text
-//        入力が0文字以上のチェック
+        //        入力が0文字以上のチェック
         guard let searchQuery = inputText else {
             return
         }
         if searchQuery.lengthOfBytes(using: String.Encoding.utf8) > 0{
             print(searchQuery)
-//            表示している記事を一旦消す
+            //            表示している記事を一旦消す
             articleDataArray.removeAll()
-//            パラメータを指定する
+            //            パラメータを指定する
             let requestUrl = createRequestUrl(parameter: searchQuery)
             getArticles(queryUrl:requestUrl)
             
@@ -171,7 +159,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         searchBar.resignFirstResponder()
     }
     
-//    検索用のURLをつくる関数
+    //    検索用のURLをつくる関数
     func createRequestUrl(parameter:String?) -> String{
         var query = ""
         if let value = parameter{
@@ -185,8 +173,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         return requestUrl
     }
     
-
-//    pull to refresh
+    
+    //    pull to refresh
     
     
     private func initializePullToRefresh(){
@@ -215,5 +203,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     private func completeRefresh(){
         stopPullToRefresh()
     }
+    
 }
 

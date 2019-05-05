@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dG0-f4-B16">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="ALX-hO-6iz">
+            <objects>
+                <navigationController id="dG0-f4-B16" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="RNi-nB-g9q"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ogg-iu-85y">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="yn4-uE-rI5" kind="relationship" relationship="rootViewController" id="0JH-z7-OWG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P66-SN-A01" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-735" y="105"/>
+        </scene>
+        <!--お気に入り記事-->
+        <scene sceneID="dxv-mn-np6">
+            <objects>
+                <viewController id="yn4-uE-rI5" customClass="FavoriteViewController" customModule="qiitaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OIN-b4-kTY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hlp-9u-tL0">
+                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="whi-mj-Tfw">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="whi-mj-Tfw" id="rNr-NP-XYL">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hlp-9u-tL0" firstAttribute="leading" secondItem="YX2-RX-KDW" secondAttribute="leading" id="RQx-mF-2UM"/>
+                            <constraint firstItem="hlp-9u-tL0" firstAttribute="top" secondItem="YX2-RX-KDW" secondAttribute="top" id="VdR-8V-nEZ"/>
+                            <constraint firstItem="YX2-RX-KDW" firstAttribute="trailing" secondItem="hlp-9u-tL0" secondAttribute="trailing" id="dvq-6u-kdG"/>
+                            <constraint firstItem="YX2-RX-KDW" firstAttribute="bottom" secondItem="hlp-9u-tL0" secondAttribute="bottom" id="rDU-bL-cA9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YX2-RX-KDW"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="お気に入り記事" id="T9x-4M-Q9W"/>
+                    <connections>
+                        <outlet property="favoritedArticleTableView" destination="hlp-9u-tL0" id="XCJ-ov-FS6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L0N-Ee-VDd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-35" y="106"/>
+        </scene>
+    </scenes>
+</document>
