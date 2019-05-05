@@ -196,7 +196,7 @@ class FavoriteViewController: UIViewController,UITableViewDataSource,UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let newArticle = favoriteArticleDataArray[indexPath.row]
         selectUrl = newArticle.url
-        performSegue(withIdentifier: "toNewViewController", sender: nil)
+        performSegue(withIdentifier: "toFavoriteViewController", sender: nil)
     }
     //    画面遷移のとき
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
