@@ -15,6 +15,9 @@ class NewViewController: UIViewController,WKUIDelegate{
     var webView:WKWebView!
     var topPadding:CGFloat = 0
     var url:String!
+    var selectedArticleAuthor:String!
+    var selectedArticleTitle:String!
+    var selectedArticlePofileImg:String!
     var rightFavoriteBarButtonItem:UIBarButtonItem!
     
     
@@ -82,6 +85,9 @@ class NewViewController: UIViewController,WKUIDelegate{
             }
         }else{
             favoriteArticleUrlList.articleUrl = url
+            favoriteArticleUrlList.articleTitle = selectedArticleTitle
+            favoriteArticleUrlList.userId = selectedArticleAuthor
+            favoriteArticleUrlList.profileImg = selectedArticlePofileImg
             
             try! realm.write {
                 realm.add(favoriteArticleUrlList)

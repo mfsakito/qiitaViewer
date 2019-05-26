@@ -7,36 +7,30 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 import RealmSwift
 
 class FavoriteViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
     
-    var requestUrlList:Array<String> = []
-    var searchAPIUrlList:Array<String> = []
     var favoriteArticleDataArray = [Article]()
     var imageCache = NSCache<AnyObject, AnyObject>()
-    let entrySearchUrl = "https://qiita.com/api/v2/items/"
+    private weak var refreshControl:UIRefreshControl!
     @IBOutlet weak var favoritedArticleTableView: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         favoritedArticleTableView.delegate = self
         favoritedArticleTableView.dataSource = self
-        preparingArticleData()
+//        preparingArticleData()
         // Do any additional setup after loading the view.
         //        お気に入りした記事のデータを取得する
-        self.favoritedArticleTableView.reloadData()
+        favoritedArticleFromRealm()
+        initializePullToRefresh()
     }
     
     
     //    -----------------------------------
     //      tableviewへの書き込み処理
     //    -----------------------------------
-    
-    //    うごいてない
     
     //TableViewに表示させるもの
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,9 +40,8 @@ class FavoriteViewController: UIViewController,UITableViewDataSource,UITableView
     
 
     func tableView(_ tableView:UITableView,cellForRowAt indexPath:IndexPath) -> UITableViewCell{
-        print("tableViewへの書き込み開始")
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        //                let cell = UITableViewCell(style:.subtitle,reuseIdentifier:"cell")
+//        let cell = UITableViewCell(style:.subtitle,reuseIdentifier:"cell")
         let article = favoriteArticleDataArray[indexPath.row]
         cell.textLabel?.text = article.title
         cell.detailTextLabel?.text = article.userId
@@ -91,108 +84,35 @@ class FavoriteViewController: UIViewController,UITableViewDataSource,UITableView
     
     
     //    -----------------------------------
-    //    APIにお気に入りした記事の問い合わせ
+    //    お気に入り舌記事をrealmからとってくる
     //    -----------------------------------
     
-    //    realmからお気に入りしたURLのリストをつくる
-    func createFavoritedArticlesList() -> Array<String>{
+    
+    func favoritedArticleFromRealm(){
         let realm = try! Realm()
         let fav = realm.objects(FavoriteArticleItem.self)
+        
         for i in fav{
-            searchAPIUrlList.append(i.articleUrl)
-        }
-        //        print("createFavoritedArticlesList : \(searchAPIUrlList.count)")
-        return searchAPIUrlList
-    }
-    
-    //記事のIDを抽出する
-    func extractArticleId() -> Array<String>{
-        var idList:Array<String> = []
-        let favoritedUrlList:Array<String> = createFavoritedArticlesList()
-        for i in favoritedUrlList{
-            let url:NSString = i as NSString
-            let loc:Int = url.range(of: "items/").location
-            let id = i[i.index(i.startIndex, offsetBy: loc + 6)...]
-            idList.append(String(id))
-        }
-        //        print("extractArticleId : \(idList[0])")
-        return idList
-    }
-    
-    //    APIにリクエストするURLのリストを返す
-    func createRequestUrlList() -> Array<String>{
-        let favoritedIdList = extractArticleId()
-        for i in favoritedIdList{
-            requestUrlList.append(entrySearchUrl + i)
-        }
-        print("createRequestUrlList.count : \(requestUrlList.count)")
-        return requestUrlList
-    }
-    
-    //    記事ごとのデータを取り込む機構をつくる
-    func returnFavoritedArticleData(requestUrl:String){
-        DispatchQueue.global().async{
-            print("start returnFavoritedArticleData")
-            let _ = Alamofire.request(requestUrl).responseJSON{
-                response in
-                guard let object = response.result.value else {
-                    return
-                }
-                let json:JSON = JSON(object)
-                //            print(json)
-                let article = Article()
-                if let title = json["title"].string{
-                    article.title = title}
-                if let url = json["url"].string {
-                    article.url = url }
-                if let userId = json["user"]["id"].string {
-                    print(userId)
-                    article.userId = userId
-                }
-                if let profileImg = json["user"]["profile_image_url"].string {
-                    article.profileImg = profileImg}
-                DispatchQueue.main.async {
-                    self.favoriteArticleDataArray.append(article)
-                }
+            let articleList = Article()
+            if Optional.some(i.articleUrl) != nil{
+                articleList.url = i.articleUrl
             }
-        }
-    }
-    
-    //    forの回転が遅く、他の部分の処理が並行して走っている？
-    //    https://qiita.com/koji-nishida/items/14fda04b586263a47e73
-    func preparingArticleData(){
-        DispatchQueue.global().async {
-            print("start preparingArticleData")
-            self.createRequestUrlList()
-            for url in self.requestUrlList{
-                self.returnFavoritedArticleData(requestUrl: url)
-                usleep(500000)
-                DispatchQueue.main.async {
-                    print("end preparingArticleData")
-                    print("preparingArticleData：\(self.favoriteArticleDataArray.count)")
-                    self.favoritedArticleTableView.reloadData()
-                }
+            if Optional.some(i.articleTitle) != nil{
+                articleList.title = i.articleTitle
             }
-            
-        }
-        
-        
-    }
-    
-    
-    
-    func getArticles(){
-        
-        print("start get articles")
-        preparingArticleData()
+            if Optional.some(i.userId) != nil{
+                articleList.userId = i.userId
+            }
+            if Optional.some(i.profileImg) != nil{
+                articleList.profileImg = i.profileImg}
+            self.favoriteArticleDataArray.append(articleList)
+            }
         self.favoritedArticleTableView.reloadData()
-        print("end get articles")
     }
-    
-    
     
     var selectUrl: String!
     //    cellがタップされたとき
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let newArticle = favoriteArticleDataArray[indexPath.row]
         selectUrl = newArticle.url
@@ -202,6 +122,38 @@ class FavoriteViewController: UIViewController,UITableViewDataSource,UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let NVC:NewViewController = (segue.destination as? NewViewController)!
         NVC.url = selectUrl
+    }
+    
+    
+    
+//pull to refresh
+    
+    private func initializePullToRefresh(){
+        let control = UIRefreshControl()
+        control.addTarget(self,action:#selector(onPullToRefresh(_:)),for:.valueChanged)
+        self.favoritedArticleTableView.addSubview(control)
+        refreshControl = control
+        
+    }
+    @objc private func onPullToRefresh(_ sender:AnyObject){
+        refresh()
+    }
+    
+    private func stopPullToRefresh(){
+        if refreshControl.isRefreshing{
+            refreshControl.endRefreshing()
+        }
+    }
+    
+    
+    private func refresh(){
+        favoriteArticleDataArray.removeAll()
+        favoritedArticleFromRealm()
+        self.completeRefresh()
+    }
+    
+    private func completeRefresh(){
+        stopPullToRefresh()
     }
     
     /*

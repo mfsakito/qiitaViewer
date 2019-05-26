@@ -8,18 +8,18 @@
     
     import Foundation
     
-    class Article{
+    class Article {
         var title:String
         var url:String
         var userId:String
         var profileImg:String
         
-        init(title:String = "title",url:String = "",userId:String = "",profileImg:String = "")
+        init(title:String = "",url:String = "",userId:String = "",profileImg:String = "")
         {
             self.title = title
             self.url = url
             self.userId = userId
             self.profileImg = profileImg
-        }
+        }                
         
     }

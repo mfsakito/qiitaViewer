@@ -28,9 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // realmのmigration
         let config = Realm.Configuration(
-            schemaVersion: 4,
+            schemaVersion: 6,
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 4) {}
+                if (oldSchemaVersion < 6) {}
         },
             deleteRealmIfMigrationNeeded: true
         )

@@ -17,13 +17,11 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var imageCache = NSCache<AnyObject, AnyObject>()
     private weak var refreshControl:UIRefreshControl!
     @IBOutlet weak var articleTableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    //    let mainTabBarController = MainTabBarController()
+    @IBOutlet weak var searchBar: UISearchBar!    
     
     let entryUrl = "https://qiita.com/api/v2/items"
     
     func getArticles(queryUrl:String){
-        print("api start")
         let _ = Alamofire.request(queryUrl).responseJSON{
             response in
             guard let object = response.result.value else {
@@ -50,23 +48,31 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     var selectUrl: String!
+    var selectedArticleAuthor:String!
+    var selectedArticleTitle:String!
+    var selectedArticlePofileImg:String!
     //    cellがタップされたとき
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let newArticle = articleDataArray[indexPath.row]
         selectUrl = newArticle.url
+        selectedArticleAuthor = newArticle.userId
+        selectedArticleTitle = newArticle.title
+        selectedArticlePofileImg = newArticle.profileImg
         performSegue(withIdentifier: "toNewViewController", sender: nil)
     }
     //    画面遷移のとき
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let NVC:NewViewController = (segue.destination as? NewViewController)!
         NVC.url = selectUrl
+        NVC.selectedArticleAuthor = selectedArticleAuthor
+        NVC.selectedArticleTitle = selectedArticleTitle
+        NVC.selectedArticlePofileImg = selectedArticlePofileImg
     }
     
     
     
     //TableViewに表示させるもの
     func tableView(_ tableView:UITableView,numberOfRowsInSection section :Int) -> Int{
-               print(articleDataArray.count)
         return articleDataArray.count
         
     }
@@ -131,7 +137,6 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //        refresh()
     }
     
     
@@ -139,7 +144,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         super.didReceiveMemoryWarning()
     }
     
-    //    商品検索
+    //    検索
     func searchBarSearchButtonClicked(_ searchBar:UISearchBar){
         //        入力テキストの取得
         let inputText = searchBar.text
